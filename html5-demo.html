@@ -1,0 +1,182 @@
+<html >
+<head>
+    <title>CSS3动画</title>
+    <meta charset="utf-8"/>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            height: 0;
+        }
+        .page {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background: url('a.jpg') 0 0 no-repeat;
+            background-size: cover;
+        }
+        .content {
+            width: 800px;
+            height: 900px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -400px;
+            margin-top: -450px;
+            border: 3px solid #fff;
+        }
+        .text {
+            color: #fff;
+            margin-left: 50px;
+            line-height: 100px;
+            font-size: 35px;
+        }
+        .footer {
+            width: 100%;
+            height: 100px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: #fff;
+            opacity: 0.8;
+            text-align: right;
+        }
+        .date {
+            display: inline-block;
+            line-height: 100px;
+            font-size: 30px;
+            margin-right: 50px;
+        }
+        .active .content1 {
+            animation: fromTop 2s;
+        }
+        .active .content2 {
+            animation: fromLeft 2s;
+        }
+        .active .content3 {
+            animation: fromRight 2s;
+        }
+        .active .content4 {
+            animation: fromBottom 2s;
+        }
+        @keyframes fromTop {
+            0% {top: -10%;}
+            100% {top: 50%; transform: rotateY(360deg);}
+        }
+        @keyframes fromLeft {
+            0% {left: -10%;}
+            100% {left: 50%;}
+        }
+        @keyframes fromRight {
+            0% {left: 110%;}
+            100% {left: 50%;}
+        }
+        @keyframes fromBottom {
+            0% {top: 100%;}
+            100% {top: 50%;}
+        }
+        .prev {
+            display: inline-block;
+            width: 200px;
+            height: 100px;
+            position: absolute;
+            left: 50%;
+            top: 100px;
+            margin-left: -100px;
+            background: url(prev.png) center center no-repeat;
+        }
+        .next {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 50%;
+            bottom: 100px;
+            margin-left: -100px;
+            background: url(Line.png) center center no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <section class="container" id="container">
+        <section class="page active">
+            <div class="content content1"  id="content1">
+                <span class="text">一个人需要隐藏多少秘密才能巧妙地度过一生</span>
+                <div class="footer">
+                    <span class="date">2016.04.08</span>
+                </div>
+            </div>
+            <a class="next"></a>
+        </section>
+        <section class="page">
+            <a class="prev"></a>
+            <div class="content content2" id="content2">
+                <span class="text">唯一重于第一</span>
+                <div class="footer">
+                    <span class="date">2016.04.09</span>
+                </div>
+            </div>
+            <a class="next"></a>
+        </section>
+        <section class="page">
+            <a class="prev"></a>
+            <div class="content content3" id="content3">
+                <span class="text">你的忧郁如蓝色</span><br/>
+                <span class="text">孤独像风铃</span><br/>
+                <span class="text">而回忆是池水</span>
+                <div class="footer">
+                    <span class="date">2016.04.10</span>
+                </div>
+            </div>
+            <a class="next"></a>
+        </section>
+        <section class="page">
+            <a class="prev"></a>
+            <div class="content content4" id="content4">
+                <span class="text">热情是美丽的秘密</span><br/>
+                <span class="text">没有热情的美丽是没有意义的</span>
+                <div class="footer">
+                    <span class="date">2016.04.08</span>
+                </div>
+            </div>
+        </section>
+    </section>
+    <script type="text/javascript" src="jquery-2.2.3.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var windowHeight = $(window).height();
+            $('#container').height(windowHeight);
+
+            // 点击下一页
+            $('.next').click(function() {
+                var position = $('#container').position();
+                var page = $(this).parent();
+                page.removeClass('active')
+                    .next().addClass('active');
+                    
+                $('#container').css({
+                    top: position.top - windowHeight
+                });
+            })
+
+            // 点击上一页
+            $('.prev').click(function() {
+                var position = $('#container').position();
+                var page = $(this).parent();
+                page.removeClass('active')
+                    .prev().addClass('active');
+                $('#container').css({
+                    top: position.top + windowHeight
+                });
+            })
+        });
+    </script>
+</body>
+</html>
