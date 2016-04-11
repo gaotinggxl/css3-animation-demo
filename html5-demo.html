@@ -22,6 +22,20 @@
             background: url('a.jpg') 0 0 no-repeat;
             background-size: cover;
         }
+        .page-b {
+            background: none;
+        }
+        .blur-bg {
+            background: url('b.jpg') 0 0 no-repeat;
+            background-size: cover;
+            -webkit-filter: blur(5px);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+        }
         .content {
             width: 800px;
             height: 900px;
@@ -31,6 +45,7 @@
             margin-left: -400px;
             margin-top: -450px;
             border: 3px solid #fff;
+            z-index: 100;
         }
         .text {
             color: #fff;
@@ -64,6 +79,8 @@
             animation: fromRight 2s;
         }
         .active .content4 {
+            background: url('b-small.jpg') 0 0 no-repeat;
+            background-size: cover;
             animation: fromBottom 2s;
         }
         @keyframes fromTop {
@@ -91,6 +108,7 @@
             top: 100px;
             margin-left: -100px;
             background: url(prev.png) center center no-repeat;
+            z-index: 100;
         }
         .next {
             display: inline-block;
@@ -101,6 +119,7 @@
             bottom: 100px;
             margin-left: -100px;
             background: url(Line.png) center center no-repeat;
+            z-index: 100;
         }
     </style>
 </head>
@@ -137,13 +156,14 @@
             </div>
             <a class="next"></a>
         </section>
-        <section class="page">
+        <section class="page page-b">
             <a class="prev"></a>
+            <div class="blur-bg"></div>
             <div class="content content4" id="content4">
                 <span class="text">热情是美丽的秘密</span><br/>
                 <span class="text">没有热情的美丽是没有意义的</span>
                 <div class="footer">
-                    <span class="date">2016.04.08</span>
+                    <span class="date">2016.04.11</span>
                 </div>
             </div>
         </section>
